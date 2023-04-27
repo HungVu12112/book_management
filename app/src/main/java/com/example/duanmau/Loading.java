@@ -24,6 +24,6 @@ public class Loading extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),LoginApplication.class));
                 finish();
             }
-        },5000);
+        },4500);
     }
 }

@@ -1,7 +1,9 @@
 package com.example.duanmau;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -42,14 +44,27 @@ public class LoginApplication extends AppCompatActivity {
         btnThoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               edusername.setText("");
-               edpass.setText("");
+                AlertDialog.Builder builder =  new AlertDialog.Builder(LoginApplication.this);
+                builder.setTitle("Thông báo ứng dụng");
+                builder.setMessage("Bạn có chắc chắn muốn thoát khỏi ứng dụng không ");
+                builder.setPositiveButton("Chắc chắn !!!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        onBackPressed();
+                    }
+                });
+                builder.setNegativeButton("Đổi ý ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 checkLogin();
             }
         });
@@ -82,7 +97,7 @@ public class LoginApplication extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }else{
-                Toast.makeText(getApplicationContext(),"Tên đăng nhập và mật khẩu không đúng ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Tên đăng nhập và mật khẩu không đúng",Toast.LENGTH_SHORT).show();
             }
         }
     }
